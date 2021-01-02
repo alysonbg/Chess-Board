@@ -13,6 +13,8 @@ psycopg2-binary = "*"
 
 [dev-packages]
 flake8 = "*"
+coverage = "*"
+codecov = "*"
 
 [requires]
 python_version = "3.9"
