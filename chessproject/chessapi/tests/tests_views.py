@@ -24,3 +24,14 @@ class PiecesViewTestCase(APITestCase):
         data = {'type': 'Turtle', 'color': 'purple'}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_that_the_moves_for_a_knight_are_returned_correctly(self):
+        """
+        Ensures that the moves for piece of the type Knight are returned
+        """
+        piece = Piece.objects.create(type='Knight', color='white')
+        url = reverse('moves', kwargs={'pk': piece.id})
+        data = {'coordinate': 'h1'}
+        response = self.client.get(url + '?search=d1', data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(['d3', 'e2', 'e4', 'f5', 'g4', 'h3', 'h5'], response.data)
