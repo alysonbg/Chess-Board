@@ -32,6 +32,6 @@ class PiecesViewTestCase(APITestCase):
         piece = Piece.objects.create(type='Knight', color='white')
         url = reverse('moves', kwargs={'pk': piece.id})
         data = {'coordinate': 'h1'}
-        response = self.client.get(url + '?search=d1', data, format='json')
+        response = self.client.get(url, data=data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(['d3', 'e2', 'e4', 'f5', 'g4', 'h3', 'h5'], response.data)
