@@ -34,7 +34,7 @@ class PiecesViewTestCase(APITestCase):
         data = {'coordinate': 'h1'}
         response = self.client.get(url, data=data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(['d3', 'e2', 'e4', 'f5', 'g4', 'h3', 'h5'], response.data)
+        self.assertEqual(['d3', 'e2', 'e4', 'f2', 'f5', 'g3', 'g4', 'h3', 'h5'], response.data)
 
     def test_that_the_moves_for_a_different_piece_are_not_returned(self):
         """

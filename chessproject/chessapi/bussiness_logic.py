@@ -49,10 +49,10 @@ def _find_knight_next_moves(position):
 
 def find_knight_moves_for_the_next_two_turns(position):
     next_moves = _find_knight_next_moves(position)
-    moves_combined = []
+    second_turn_moves = []
     for move in next_moves:
         next_turn_moves = _find_knight_next_moves(move)
         for next_turn_move in next_turn_moves:
-            moves_combined.append(next_turn_move)
+            second_turn_moves.append(next_turn_move)
 
-    return sorted(list(set(moves_combined)))
+    return sorted(list(set(next_moves + second_turn_moves)))
