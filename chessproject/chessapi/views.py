@@ -26,6 +26,11 @@ def moves(request, pk):
 
     if request.method == 'GET':
         if piece.type == 'Knight':
-            position = request.query_params.get('coordinate')
-            next_possible_moves = find_knight_moves_for_the_next_two_turns(position)
-            return Response(data=next_possible_moves, status=status.HTTP_200_OK)
+            position = request.query_params.get('coordinate', None)
+            if position:
+                next_possible_moves = find_knight_moves_for_the_next_two_turns(position)
+                return Response(data=next_possible_moves, status=status.HTTP_200_OK)
+            return Response(status=400)
+
+        else:
+            return Response(data=[], status=200)
