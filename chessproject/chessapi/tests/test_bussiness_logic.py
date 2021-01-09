@@ -31,4 +31,4 @@ class BussinessLogicTest(unittest.TestCase):
         :return: a list of the Knight next moves for the next 2 turns
         """
         result = find_knight_moves_for_the_next_two_turns('h1')
-        self.assertEqual(['d3', 'e2', 'e4', 'f5', 'g4', 'h3', 'h5'], result)
+        self.assertEqual(['d3', 'e2', 'e4', 'f2', 'f5', 'g3', 'g4', 'h3', 'h5'], result)
