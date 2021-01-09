@@ -35,3 +35,23 @@ class PiecesViewTestCase(APITestCase):
         response = self.client.get(url, data=data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(['d3', 'e2', 'e4', 'f5', 'g4', 'h3', 'h5'], response.data)
+
+    def test_that_the_moves_for_a_different_piece_are_not_returned(self):
+        """
+        Ensures that the moves are not returned from a piece that is not a Knight
+        """
+        piece = Piece.objects.create(type='Queen', color='white')
+        url = reverse('moves', kwargs={'pk': piece.id})
+        data = {'coordinate': 'h1'}
+        response = self.client.get(url, data=data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual([], response.data)
+
+    def test_that_the_an_error_is_returned_when_a_position_is_not_provided(self):
+        """
+        Ensures that an status code 400 is returned when the argument position is not provided
+        """
+        piece = Piece.objects.create(type='Knight', color='white')
+        url = reverse('moves', kwargs={'pk': piece.id})
+        response = self.client.get(url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
