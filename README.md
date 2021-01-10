@@ -10,6 +10,7 @@ cp contrib/env-sample .env
 python -m pip install pipenv
 pipenv sync
 docker-compose up -d
+pipenv shell
 python manage.py migrate
 python manage.py runserver
 ```

@@ -9,8 +9,8 @@ services:
             - db-data:/var/lib/postgresql/data
         environment:
             - LC_ALL=C.UTF-8
-            - POSTGRES_PASSWORD=abg
-            - POSTGRES_USER=abg
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_USER=postgres
             - POSTGRES_DB=chessdb
         ports:
             - 5434:5432
